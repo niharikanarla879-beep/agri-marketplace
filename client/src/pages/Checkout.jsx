@@ -81,7 +81,7 @@ export default function Checkout() {
     };
 
     const response = await axios.post(
-      "http://localhost:5000/api/orders/place",
+      "http://agri-marketplace-zliu.onrender.com/api/orders/place",
       orderData
     );
 
