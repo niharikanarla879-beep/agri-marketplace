@@ -6,7 +6,10 @@ const orderRoutes = require("./routes/orderRoutes");
 
 const app = express();
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "YOUR_FRONTEND_RENDERED_URL"
+  ],
   methods: ["GET", "POST"],
   credentials: true
 }));
