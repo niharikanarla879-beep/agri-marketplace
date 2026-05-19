@@ -94,9 +94,9 @@ export default function Checkout() {
 
   } catch (error) {
 
-    console.log(error.response.data);
+    console.log(error);
 
-    alert(error.response.data.error ||"Order Failed");
+    alert("Order Failed");
 
   }
 }}
