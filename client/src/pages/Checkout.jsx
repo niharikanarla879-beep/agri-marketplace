@@ -94,9 +94,12 @@ export default function Checkout() {
 
   } catch (error) {
 
-    console.log(error);
+     console.log(error);
 
-    alert("Order Failed");
+    alert(
+      error?.response?.data?.error ||
+      error.message ||
+      "Order Failed");
 
   }
 }}
