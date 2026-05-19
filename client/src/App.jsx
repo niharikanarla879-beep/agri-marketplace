@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import AddProduct from "./pages/AddProduct";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
+import Orders from "./pages/Orders";
 
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/Checkout" element={<Checkout />} />
         <Route path="/OrderSuccess" element={<OrderSuccess />} />
+        <Route path="/Orders" element={<Orders />} />
       </Routes>
     </BrowserRouter>
   );
