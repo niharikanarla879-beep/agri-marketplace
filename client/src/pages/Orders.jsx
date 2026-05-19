@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Orders() {
-
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -10,51 +9,41 @@ export default function Orders() {
   }, []);
 
   const fetchOrders = async () => {
-
     try {
-
       const response = await axios.get(
         "https://agri-marketplace-backend.onrender.com/api/orders"
       );
 
       setOrders(response.data);
-
     } catch (error) {
-
       console.log(error);
-
     }
   };
 
   return (
+    <div className="p-10">
+      <h1 className="text-4xl font-bold mb-8">Orders</h1>
 
-    <div style={{ padding: "20px" }}>
+      <div className="space-y-6">
+        {orders.map((order) => (
+          <div
+            key={order._id}
+            className="bg-white p-6 rounded-2xl shadow"
+          >
+            <h2 className="text-2xl font-bold">
+              {order.fullName}
+            </h2>
 
-      <h1>Orders</h1>
+            <p>{order.phone}</p>
 
-      {orders.map((order, index) => (
+            <p>{order.address}</p>
 
-        <div
-          key={index}
-          style={{
-            border: "1px solid gray",
-            padding: "15px",
-            marginBottom: "20px",
-            borderRadius: "10px",
-          }}
-        >
-
-          <h2>{order.customerName}</h2>
-
-          <p>{order.address}</p>
-
-          <p>Total: ₹{order.totalPrice}</p>
-
-        </div>
-
-      ))}
-
+            <p className="font-bold text-green-700 mt-2">
+              ₹{order.total}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
-
   );
 }
