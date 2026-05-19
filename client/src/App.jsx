@@ -28,7 +28,7 @@ export default function App() {
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/Checkout" element={<Checkout />} />
         <Route path="/OrderSuccess" element={<OrderSuccess />} />
-        <Route path="/Orders" element={<Orders />} />
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </BrowserRouter>
   );
