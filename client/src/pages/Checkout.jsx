@@ -85,7 +85,7 @@ export default function Checkout() {
       orderData
     );
 
-    alert(response.data.message);
+    alert("Order Placed Successfully");
 
     localStorage.removeItem("cart");
     setCartItems([]);
