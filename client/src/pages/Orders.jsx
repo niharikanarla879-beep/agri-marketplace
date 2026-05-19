@@ -13,7 +13,7 @@ export default function Orders() {
       const response = await axios.get(
         "https://agri-marketplace-backend.onrender.com/api/orders"
       );
-
+      console.log(response.data);
       setOrders(response.data);
     } catch (error) {
       console.log(error);
@@ -31,15 +31,13 @@ export default function Orders() {
             className="bg-white p-6 rounded-2xl shadow"
           >
             <h2 className="text-2xl font-bold">
-              {order.fullName}
+              {order.customerName}
             </h2>
-
-            <p>{order.phone}</p>
 
             <p>{order.address}</p>
 
             <p className="font-bold text-green-700 mt-2">
-              ₹{order.total}
+              ₹{order.totalPrice}
             </p>
           </div>
         ))}

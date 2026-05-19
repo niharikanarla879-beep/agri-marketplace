@@ -7,7 +7,7 @@ const orderRoutes = require("./routes/orderRoutes");
 const app = express();
 app.use(cors({
   origin: [
-    "https://localhost:5173",
+    "http://localhost:5173",
     "https://agri-marketplace-frontend-1.onrender.com",
   ],
   methods: ["GET", "POST"],
