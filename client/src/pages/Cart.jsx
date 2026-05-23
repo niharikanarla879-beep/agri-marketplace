@@ -1,3 +1,4 @@
+import axios from  "axios";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 
@@ -26,6 +27,28 @@ export default function Cart() {
 
     window.location.reload();
   };
+   const placeOrder = async () => {
+                   try {
+                      await axios.post(
+                        "http://localhost:5000/api/orders/place",
+                         {
+                            customerName: "Customer",
+                            address: "Hyderabad",
+                            totalPrice: total + 40,
+                            items: cartItems,
+                          }
+                      );
+
+                      localStorage.removeItem("cart");
+
+                      alert("Order placed successfully");
+
+                      navigate("/orders");
+                    } catch (error) {
+                        console.log(error.response?.data || error.message);
+                        alert("Order failed");
+                     }
+                  };
 
   return (
     <div>
@@ -64,6 +87,7 @@ export default function Cart() {
                   >
                     Remove
                   </button>
+                 
                 </div>
               </div>
             ))}
@@ -90,7 +114,8 @@ export default function Cart() {
             </div>
 
             <button 
-             onClick={() => navigate("/Checkout")}
+             onClick={placeOrder}
+            
              className="bg-green-700 text-white w-full py-4 rounded-2xl mt-10 text-xl hover:bg-green-800">
                Proceed To Checkout
             </button>

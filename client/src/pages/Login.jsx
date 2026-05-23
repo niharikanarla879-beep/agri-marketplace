@@ -1,84 +1,81 @@
-import Navbar from "../components/Navbar";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData
+      );
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      alert("Login Successful");
+
+      if (res.data.user.role === "farmer") {
+        navigate("/farmer-dashboard");
+      } else {
+        navigate("/customer-dashboard");
+      }
+
+    } catch (error) {
+      console.log(error.response.data);
+      alert(error.response.data.message);
+    }
+  };
+
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="min-h-screen flex items-center justify-center bg-green-50">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-10 rounded-2xl shadow-lg w-[400px]"
+      >
+        <h1 className="text-4xl font-bold mb-6 text-center text-green-700">
+          Login
+        </h1>
 
-      <Navbar />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          className="w-full border p-3 rounded-lg mb-4"
+          onChange={handleChange}
+        />
 
-      <div className="flex justify-center items-center p-10">
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          className="w-full border p-3 rounded-lg mb-6"
+          onChange={handleChange}
+        />
 
-        <div className="bg-white shadow-2xl rounded-3xl p-10 w-full max-w-lg">
-
-          <h1 className="text-5xl font-bold text-center text-green-700 mb-10">
-            Login 🌱
-          </h1>
-
-          <form className="space-y-6">
-
-            <div>
-              <label className="text-lg font-semibold">
-                Email
-              </label>
-
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full border p-4 rounded-2xl mt-2 focus:outline-none focus:ring-2 focus:ring-green-600"
-              />
-            </div>
-
-            <div>
-              <label className="text-lg font-semibold">
-                Password
-              </label>
-
-              <input
-                type="password"
-                placeholder="Enter your password"
-                className="w-full border p-4 rounded-2xl mt-2 focus:outline-none focus:ring-2 focus:ring-green-600"
-              />
-            </div>
-
-            <div>
-              <label className="text-lg font-semibold">
-                Login As
-              </label>
-
-              <select className="w-full border p-4 rounded-2xl mt-2 focus:outline-none focus:ring-2 focus:ring-green-600">
-
-                <option>
-                  Customer
-                </option>
-
-                <option>
-                  Farmer
-                </option>
-
-                <option>
-                  Admin
-                </option>
-
-              </select>
-            </div>
-
-            <button className="bg-green-700 text-white w-full py-4 rounded-2xl text-xl hover:bg-green-800 transition duration-300">
-              Login
-            </button>
-
-          </form>
-
-          <p className="text-center text-gray-600 mt-8">
-            Don’t have an account?
-            <span className="text-green-700 font-bold cursor-pointer ml-2">
-              Register
-            </span>
-          </p>
-
-        </div>
-
-      </div>
-
+        <button
+          type="submit"
+          className="w-full bg-green-700 text-white py-3 rounded-lg"
+        >
+          Login
+        </button>
+      </form>
     </div>
   );
 }

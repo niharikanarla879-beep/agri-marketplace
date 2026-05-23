@@ -22,11 +22,11 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/farmer" element={<FarmerDashboard />} />
-        <Route path="/customer" element={<CustomerDashboard />} />
+        <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/add-product" element={<AddProduct />} />
-        <Route path="/Checkout" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/OrderSuccess" element={<OrderSuccess />} />
         <Route path="/orders" element={<Orders />} />
       </Routes>

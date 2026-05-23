@@ -3,8 +3,10 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const orderRoutes = require("./routes/orderRoutes");
-
+const authRoutes = require("./routes/authRoutes");
+const productRoutes = require("./routes/productRoutes");
 const app = express();
+
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -13,10 +15,12 @@ app.use(cors({
   methods: ["GET", "POST"],
   credentials: true
 }));
-
 app.use(express.json());
 
+app.use("/api/auth",authRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/products" , productRoutes);
+
 
 mongoose.connect(process.env.MONGO_URI, {
     tls: true,
