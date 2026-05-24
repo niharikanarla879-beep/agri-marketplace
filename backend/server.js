@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://agri-marketplace-frontend-1.onrender.com",
+    "https://agri-marketplace-two.vercel.app",
   ],
   methods: ["GET", "POST"],
   credentials: true
