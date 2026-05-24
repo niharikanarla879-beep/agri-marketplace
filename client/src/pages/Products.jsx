@@ -103,7 +103,7 @@ export default function Products() {
    
 
   useEffect(() => {
-  fetch("http://localhost:5000/api/products")
+  fetch("https://agri-marketplace-backend.onrender.com")
     .then((res) => res.json())
     .then((data) => {
       const farmerProducts =
