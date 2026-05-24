@@ -97,7 +97,7 @@ export default function Home() {
     </h3>
 
     <p className="text-green-700 text-xl mt-2">
-      ₹40/kg
+      
     </p>
   </div>
 
@@ -113,13 +113,13 @@ export default function Home() {
     </h3>
 
     <p className="text-green-700 text-xl mt-2">
-      ₹80/kg
+      
     </p>
   </div>
 
   <div className="bg-white p-5 rounded-3xl shadow-lg hover:scale-105 transition duration-300">
     <img
-      src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=1000&auto=format&fit=crop"
+      src="https://plus.unsplash.com/premium_photo-1722945635992-8eda6a907978?q=80&w=760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       alt="seeds"
       className="h-52 w-full object-cover rounded-2xl"
     />
@@ -129,7 +129,7 @@ export default function Home() {
     </h3>
 
     <p className="text-green-700 text-xl mt-2">
-      ₹120/pack
+      
     </p>
   </div>
 
@@ -145,7 +145,7 @@ export default function Home() {
     </h3>
 
     <p className="text-green-700 text-xl mt-2">
-      ₹450/bag
+      
     </p>
   </div>
 
@@ -161,25 +161,25 @@ export default function Home() {
     </h3>
 
     <p className="text-green-700 text-xl mt-2">
-      ₹65/litre
+      
     </p>
   </div>
-
   <div className="bg-white p-5 rounded-3xl shadow-lg hover:scale-105 transition duration-300">
-    <img
-      src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?q=80&w=1000&auto=format&fit=crop"
-      alt="tools"
-      className="h-52 w-full object-cover rounded-2xl"
-    />
+  <img
+    src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b"
+    alt="fruits"
+    className="h-52 w-full object-cover rounded-2xl"
+  />
 
-    <h3 className="text-2xl font-bold mt-4">
-      Farming Tools
-    </h3>
+  <h3 className="text-2xl font-bold mt-4">
+    Fruits
+  </h3>
 
-    <p className="text-green-700 text-xl mt-2">
-      ₹999/set
-    </p>
-  </div>
+  <p className="text-green-700 text-xl mt-2">
+    
+  </p>
+</div>
+  
   </div>
 
 </div> 
