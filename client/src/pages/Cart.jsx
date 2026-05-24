@@ -12,7 +12,7 @@ export default function Cart() {
     item.price.toString().replace("₹", "")
   );
 
-  return sum + price;
+  return sum + price + price * (item.quantity || 1);
 }, 0);
 
   const removeItem = (index) => {
@@ -27,6 +27,29 @@ export default function Cart() {
 
     window.location.reload();
   };
+  const increaseQuantity = (index) => {
+  cartItems[index].quantity += 1;
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cartItems)
+  );
+
+  window.location.reload();
+};
+
+const decreaseQuantity = (index) => {
+  if (cartItems[index].quantity > 1) {
+    cartItems[index].quantity -= 1;
+  }
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cartItems)
+  );
+
+  window.location.reload();
+};
    const placeOrder = async () => {
                    try {
                       await axios.post(
@@ -50,6 +73,7 @@ export default function Cart() {
                      }
                   };
 
+  
   return (
     <div>
       <Navbar />
@@ -80,7 +104,27 @@ export default function Cart() {
                   <p className="text-green-700 text-2xl mt-3 font-bold">
                     {item.price}
                   </p>
+                  <div className="flex items-center gap-4 mt-4">
 
+  <button
+    onClick={() => decreaseQuantity(index)}
+    className="bg-gray-300 px-4 py-1 rounded-xl text-xl"
+  >
+    -
+  </button>
+
+  <span className="text-2xl font-bold">
+    {item.quantity || 1}
+  </span>
+
+  <button
+    onClick={() => increaseQuantity(index)}
+    className="bg-green-700 text-white px-4 py-1 rounded-xl text-xl"
+  >
+    +
+  </button>
+
+</div>
                   <button
                     onClick={() => removeItem(index)}
                     className="bg-red-500 text-white px-6 py-2 rounded-xl mt-4 hover:bg-red-600"
@@ -91,12 +135,30 @@ export default function Cart() {
                 </div>
               </div>
             ))}
+
           </div>
 
           <div className="bg-white shadow-xl rounded-2xl p-10 h-fit">
             <h2 className="text-4xl font-bold mb-8">
               Order Summary
             </h2>
+            {cartItems.map((item, index) => (
+  <div
+    key={index}
+    className="flex justify-between text-lg mb-3"
+  >
+    <span>
+      {item.name} x {item.quantity || 1}
+    </span>
+
+    <span>
+      ₹
+      {parseInt(
+        item.price.toString().replace("₹", "")
+      ) * (item.quantity || 1)}
+    </span>
+  </div>
+))}
 
             <div className="flex justify-between text-xl mb-4">
               <span>Items</span>

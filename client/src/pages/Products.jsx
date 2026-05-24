@@ -118,20 +118,31 @@ export default function Products() {
     .catch((err) => console.log(err));
 }, []);
 
-  const addToCart = (product) => {
+ const addToCart = (product) => {
+  const existingCart =
+    JSON.parse(localStorage.getItem("cart")) || [];
 
-    const existingCart =
-      JSON.parse(localStorage.getItem("cart")) || [];
+  const productIndex = existingCart.findIndex(
+    (item) => item.name === product.name
+  );
 
-    existingCart.push(product);
+  if (productIndex !== -1) {
+    existingCart[productIndex].quantity =
+      (existingCart[productIndex].quantity || 1) + 1;
+  } else {
+    existingCart.push({
+      ...product,
+      quantity: 1,
+    });
+  }
 
-    localStorage.setItem(
-      "cart",
-      JSON.stringify(existingCart)
-    );
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(existingCart)
+  );
 
-    navigate("/cart");
-  };
+  alert("Added to cart");
+};
 
   return (
     <div className="bg-gray-100 min-h-screen">
