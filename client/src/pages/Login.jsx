@@ -22,7 +22,7 @@ export default function Login() {
 
     try {
       const res = await axios.post(
-        "https://agri-marketplace-backend.onrender.com",
+        "https://agri-marketplace-backend.onrender.com/api/orders/place",
         formData
       );
 

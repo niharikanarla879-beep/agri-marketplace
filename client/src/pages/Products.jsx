@@ -103,7 +103,7 @@ export default function Products() {
    
 
   useEffect(() => {
-  fetch("https://agri-marketplace-backend.onrender.com")
+  fetch("https://agri-marketplace-backend.onrender.com/api/orders/place")
     .then((res) => res.json())
     .then((data) => {
       const farmerProducts =

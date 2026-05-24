@@ -24,7 +24,7 @@ export default function Register() {
 
     try {
       await axios.post(
-        "https://agri-marketplace-backend.onrender.com",
+        "https://agri-marketplace-backend.onrender.com/api/orders/place",
         formData
       );
 

@@ -53,7 +53,7 @@ const decreaseQuantity = (index) => {
    const placeOrder = async () => {
                    try {
                       await axios.post(
-                        "https://agri-marketplace-backend.onrender.com",
+                        "https://agri-marketplace-backend.onrender.com/api/orders/place",
                          {
                             customerName: "Customer",
                             address: "Hyderabad",
