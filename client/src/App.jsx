@@ -11,7 +11,8 @@ import AddProduct from "./pages/AddProduct";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import Orders from "./pages/Orders";
-
+import ProductDetail from "./pages/ProductDetail";
+import Wishlist from "./pages/Wishlist";
 
 export default function App() {
   return (
@@ -19,16 +20,18 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/farmer" element={<FarmerDashboard />} />
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/cart" element={<Cart />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/OrderSuccess" element={<OrderSuccess />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
     </BrowserRouter>
   );

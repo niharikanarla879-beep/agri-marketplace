@@ -12,7 +12,7 @@ app.use(cors({
     "http://localhost:5173",
     "https://agri-marketplace-two.vercel.app",
   ],
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   credentials: true
 }));
 app.use(express.json());
