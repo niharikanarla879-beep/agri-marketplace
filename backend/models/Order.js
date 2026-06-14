@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mockDb = require("./mockDb");
 
 const orderItemSchema = new mongoose.Schema({
   product: {
@@ -62,4 +63,19 @@ const orderSchema = new mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model("Order", orderSchema);
+const RealOrder = mongoose.model("Order", orderSchema);
+
+module.exports = new Proxy(RealOrder, {
+  construct(target, args) {
+    if (mongoose.connection.readyState !== 1) {
+      return new mockDb.MockOrder(...args);
+    }
+    return new target(...args);
+  },
+  get(target, prop) {
+    if (mongoose.connection.readyState !== 1) {
+      return mockDb.MockOrder[prop];
+    }
+    return target[prop];
+  }
+});

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mockDb = require("./mockDb");
 
 const reviewSchema = new mongoose.Schema({
   user: {
@@ -62,4 +63,19 @@ const productSchema = new mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model("Product", productSchema);
+const RealProduct = mongoose.model("Product", productSchema);
+
+module.exports = new Proxy(RealProduct, {
+  construct(target, args) {
+    if (mongoose.connection.readyState !== 1) {
+      return new mockDb.MockProduct(...args);
+    }
+    return new target(...args);
+  },
+  get(target, prop) {
+    if (mongoose.connection.readyState !== 1) {
+      return mockDb.MockProduct[prop];
+    }
+    return target[prop];
+  }
+});

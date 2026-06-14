@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mockDb = require("./mockDb");
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -17,4 +18,19 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model("User", userSchema);
+const RealUser = mongoose.model("User", userSchema);
+
+module.exports = new Proxy(RealUser, {
+  construct(target, args) {
+    if (mongoose.connection.readyState !== 1) {
+      return new mockDb.MockUser(...args);
+    }
+    return new target(...args);
+  },
+  get(target, prop) {
+    if (mongoose.connection.readyState !== 1) {
+      return mockDb.MockUser[prop];
+    }
+    return target[prop];
+  }
+});
